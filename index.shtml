@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端日志分析</title>
+    <link rel="stylesheet" href="./material.min.css" />
+    <link rel="stylesheet" href="./media/css/dataTables.material.css" />
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .dataTables_wrapper {
+            height: 100%;
+        }
+        #welcome {
+            background: #F9F9F9;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2;
+            text-align: center;
+        }
+        #welcome>div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -60%);
+        }
+        #welcome h1 {
+            font-weight: bold;
+        }
+        #welcome p {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">
+        <div>
+            <h1>将日志文件拖入本页面</h1>
+            <p>支持多个文件同时拖入</p>
+            <p><a href="javascript:showDemo();">展示示例日志</a></p>
+        </div>
+    </div>
+
+    <table id="table_id" class="mdl-data-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>timestamp</th>
+                <th>readable</th>
+                <th>mod</th>
+                <th>degree</th>
+                <th>descriptor</th>
+                <th>data</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="./media/js/jquery.js"></script>
+    <script src="./media/js/jquery.dataTables.js"></script>
+    <script src="./media/js/dataTables.material.js"></script>
+    <script src="./template.js"></script>
+    <script src="./date.js"></script>
+
+    <script type="text/template" id="template">
+        <%for(var i = 0; i < data.length; i++) {%>
+            <tr>
+                <td><%=data[i][0] || ''%></td>
+                <td data-timestamp="<%=data[i][0] || 0%>"><%=data[i][0] || ''%></td>
+                <td><%=data[i][1] || ''%></td>
+                <td><%=data[i][2] || ''%></td>
+                <td><%=data[i][3] || ''%></td>
+                <td><%=data[i][4] ? unescape(data[i][4]) : ''%></td>
+            </tr>
+        <%}%>
+    </script>
+
+    <script>
+            var render = $('#template').template(),
+                dataTable;
+
+            document.body.ondragenter = function(e){  
+                e.preventDefault();
+            }  
+    
+            document.body.ondragover = function(e){  
+                e.preventDefault();  
+            }  
+    
+            document.body.ondragleave = function(e){  
+                e.preventDefault();  
+            }  
+
+            document.body.ondrop = function(e) {
+                var target = 0, resolved = 0, i, reader, lines = [];
+
+                e.preventDefault();
+                target = e.dataTransfer.files.length;
+
+                function processWhenResolved() {
+                    if (resolved === target) {
+                        localStorage.setItem('logcat.cache', JSON.stringify(lines));
+                        initTableWithData(lines);
+                    }
+                }
+
+                for (i = 0; i < target; i++) {
+                    reader = new FileReader();
+                    reader.readAsText(e.dataTransfer.files[i]);
+                    reader.onload = function(e) {
+                        var i , data = e.target.result.split(/\n/);
+                        for (i = 0; i < data.length; i++) {
+                            if (/^\d{13}\t/.test(data[i])) {
+                                lines.push(data[i].split(/\t+/));
+                            }
+                        }
+
+                        resolved++;
+                        processWhenResolved();
+                    };
+                    reader.onerror = function() {
+                        resolved++;
+                        processWhenResolved();
+                    };
+                }
+                
+            };
+
+            if (localStorage.getItem('logcat.cache')) {
+                initTableWithData(JSON.parse(localStorage.getItem('logcat.cache')));
+            }
+
+
+            function initTableWithData(data) {
+                if (dataTable) {
+                    dataTable.destroy();
+                }
+
+                $('#table_id').find('tbody').html(render({
+                    data: data
+                }));
+
+                dataTable = $('#table_id').DataTable({
+                    order: [[0, 'desc']],
+                    columnDefs: [
+                        {
+                            targets: [ 1, 2, 3, 4, 5 ],
+                            className: 'mdl-data-table__cell--non-numeric'
+                        },
+                        {
+                            targets: 1,
+                            render: function(data) {
+                                return $.Date.date2Str(new Date(+data), "%Y/%M/%d %h:%m:%s", true);
+                            }
+                        }
+                    ],
+                    stateSave: true,
+                    scrollY: $(window).height() - 200
+                });
+
+                $('#welcome').hide();
+            }
+
+            function showDemo() {
+                $.get('./demo.log', function(logs) {
+                    var lines = [], i , data = logs.split(/\n/);
+                    for (i = 0; i < data.length; i++) {
+                        if (/^\d{13}\t/.test(data[i])) {
+                            lines.push(data[i].split(/\t+/));
+                        }
+                    }
+                    initTableWithData(lines);
+                });
+            }
+    </script>
+</body>
+</html>

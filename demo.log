@@ -1,0 +1,106 @@
+===version:20161121094435:start===
+cookie:
+lct_appid=wxc92ca6e258e3f1eb&pgv_info=ssid%3Ds2552372208&pgv_pvid=3041061292&qlappid=wx9cf8c670ebd68ce4&qlskey=017c392d50abc3c5n7eb9ca8&qluin=085e9858eea1fc563d519f6b9%40wx.tenpay.com&qq_logtype=16&refresh_token=Otqna24aoUKU8-3IBpYSG5rtIsanFVF-0fNAo5JMjJpVZyX4BLDcdtjaEgu7Dbe4hFgPkIMCDxuAtJSlHHGdTw0LWwBIXdpnVTwGRSh5Yjg&ts_last=%2Fweixin%2Fv1%2Ffunds%2Ffunds_recharge.shtml&ts_refer=wzq.newone.com.cn%2Fweixin%2Fv1%2Ftrade%2Ftrade.shtml&ts_sid=364933351&ts_uid=7497980688&wx_session_time=1511006848667&wzq_dealer=10100&wzq_qlappid=wx9cf8c670ebd68ce4&wzq_qlskey=017c392d50abc3c5n7eb9ca8&wzq_qluin=os-ppuLxH-uRdcRVqdB3gDfqBKpQ
+useragent:
+Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36
+data:
+wzq.tenpay.com: user upload
+1479692458030	app	info	page.beforeunload
+1479692459340	spa	info	config	{"pspa":false}
+1479692459555	spa	info	noredirect	{"to":"/weixin/v1/apply/no_account.shtml","usingCache":false,"depth":4}
+1479692459597	apply/noaccount	info	dealers.request
+1479692459796	apply/noaccount	info	dealers.get	{"retcode":"0","retmsg":"OK","slist":[{"area":"","can_bind":"0","id":"10800","name":"%u62DB%u5546%u8BC1%u5238","weights":"10"}]}
+1479692468310	apply/noaccount	info	submit
+1479692468332	apply/mod	info	next
+1479692468492	spa	info	redirect	{"to":"apply/select_bindcard.shtml","depth":5,"type":"hash"}
+1479692468518	apply/card	info	card.request
+1479692468786	apply/card	info	card.get	{"cards":[{"bank_abbr":"cmb","bank_code":"2011","bank_name":"%u62DB%u5546%u94F6%u884C","card_num":"2627","is_support":"1","serial_num":"60317969051447559108"}]}
+1479692468798	apply/card	info	card.selected	{"serial":"60317969051447559108"}
+1479692469764	apply/card	info	submit
+1479692469778	apply/card	info	card.saving.start	{"bankCode":"2011","serialNum":"60317969051447559108"}
+1479692470075	apply/card	info	card.saving.succeed
+1479692470117	apply/mod	info	next
+1479692470122	spa	info	redirect	{"to":"apply/photo.shtml?&ab=0","depth":6,"type":"hash"}
+1479692485462	ajax	error	abort	"https://wzq.tenpay.com/weixin/v1/apply/photo.shtml?ab=0&_=1479692470073"
+1479692504516	apply/card	info	card.add.show
+1479692506350	apply/card	info	card.add.start
+1479692507353	apply/card	info	card.add.start
+1479692508271	apply/card	info	card.add.start
+1479692509098	apply/card	info	card.add.closed
+1479692509922	apply/card	info	submit
+1479692509938	apply/card	info	card.saving.start	{"bankCode":"2011","serialNum":"60317969051447559108"}
+1479692510254	apply/card	info	card.saving.succeed
+1479692510262	spa	info	noredirect	{"to":"/weixin/v1/apply/photo.shtml?&ab=0","usingCache":false,"depth":6}
+1479692510520	apply/photo	info	isphoto1set	true
+1479692510595	apply/photo	info	isphoto2set	true
+1479692510614	apply/photo	info	render.state.change	{"side":"front","state":2}
+1479692510620	apply/photo	info	render.state.change	{"side":"back","state":2}
+1479692510622	apply/photo	info	abstat	"a"
+1479692510627	apply/photo	info	verify.start	{"side":"front"}
+1479692510631	apply/photo	info	render.state.change	{"side":"front","state":3}
+1479692510636	apply/photo	info	verify.start	{"side":"back"}
+1479692510647	apply/photo	info	render.state.change	{"side":"back","state":3}
+1479692511342	apply/photo	info	image.load.succeed	"/cgi-bin/photoupload.cgi?action=2&type=2&_=1479692510472"
+1479692511401	apply/photo	info	image.load.succeed	"/cgi-bin/photoupload.cgi?action=2&type=1&_=1479692510468"
+1479692515478	apply/photo	error	verify.failed:1	{"retcode":"0","retmsg":"OK","front_recongnize":"51091303","need_retry":"","side":"front"}
+1479692515487	apply/photo	info	render.state.change	{"side":"front","state":-1}
+1479692516687	apply/photo	error	verify.failed:2	{"retcode":"0","retmsg":"OK","back_recongnize":"51091303","need_retry":"","side":"back"}
+1479692516697	apply/photo	info	render.state.change	{"side":"back","state":-1}
+1479692518688	apply/photo	info	click.front
+1479692518696	apply/photo	error	sdk.notready	{"state":"initializing"}
+1479692518708	apply/photo	info	choose.start	{"side":"front"}
+1479692520558	apply/photo	info	submit
+1479692520585	apply/mod	info	next
+1479692520608	spa	info	redirect	{"to":"apply/profile.shtml","depth":7,"type":"hash"}
+1479692520776	apply/profile	info	userinfo.get	{"credentialname":"%u738B%u514B%u9707","credentialid":"340521198911045415","degree":"2","job":"1"}
+1479692520795	apply/profile	info	shouldCheckInputs	true
+1479692521565	apply/profile	info	click.submit	{"shouldCheckInputs":true,"errorDescriptor":"","credentialname":"%u738B%u514B%u9707","credentialid":"340521198911045415","degree":"2","job":"1"}
+1479692521598	apply/profile	info	identity.sending
+1479692522102	apply/profile	info	identity.sent
+1479692522160	apply/mod	info	next
+1479692522248	spa	info	redirect	{"to":"apply/upload_video.shtml?&ab=1","depth":8,"type":"hash"}
+1479692522424	apply/video	info	userinfo.get	{"isVideoSet":"","sex":"1"}
+1479692522454	apply/video	info	lipcode.request.start
+1479692522474	apply/video	info	abstat	"b"
+1479692522572	apply/video	info	shouldHaveLivingRecognition	false
+1479692522750	apply/video	info	lipcode.request.succeed	{"lipCode":"5369"}
+1479692523305	apply/video	warning	support.sdk	"false, check timeout"
+1479692526503	apply/video	info	popupwithcode.show	{"isCodeReady":true}
+1479692526520	apply/video	info	viewstatus.switch	{"status":"demoWithPop","descriptor":{}}
+1479692536251	apply/video	info	video.choose.succeed
+1479692536283	apply/video	info	viewstatus.switch	{"status":"uploading","descriptor":{}}
+1479692536303	apply/video	info	video.upload.start
+1479692541901	apply/video	info	video.upload.succeed
+1479692541909	apply/video	info	video.verify.start
+1479692542141	apply/video	info	video.verify.succeed	{"needRetry":"nocheck"}
+1479692542646	apply/video	info	viewstatus.switch	{"status":"success","descriptor":{"strategy":"detect-from-backend"}}
+1479692543621	apply/video	info	submit
+1479692543724	apply/mod	info	next
+1479692543740	spa	info	redirect	{"to":"apply/set_pwd.shtml","depth":9,"type":"hash"}
+1479692547171	apply/setpwd	info	complexity.check.pass
+1479692547176	apply/setpwd	info	view.switch	"confirm"
+1479692550200	apply/setpwd	info	equal.check.pass
+1479692550231	apply/setpwd	info	initEncryptionParams.start
+1479692550440	apply/setpwd	info	initEncryptionParams.succeed
+1479692550458	apply/setpwd	info	password.crypt
+1479692550465	apply/setpwd	info	password.crypted
+1479692550470	apply/setpwd	info	password.send
+1479692550712	apply/setpwd	info	password.sent
+1479692550845	userinfo	info	init	{"nickname":"skyrunner","state":"1","irregular":"0","gem":"0","bankcard":"2627"}
+1479692550855	apply/mod	info	stepqueue.generated	["index","card","photo","profile","video","setpwd","risk_result","progress"]
+1479692550866	apply/mod	info	next	{"0":{"recover":0}}
+1479692550932	spa	info	redirect	{"to":"apply/risk_result.shtml?acceptstate=undefined&recover=0","depth":10,"type":"hash"}
+1479692550988	apply/riskresult	info	userinfo.get	{"marketType":"0,1"}
+1479692550993	apply/riskresult	info	view.switch	{"status":"balance","descriptor":{}}
+1479692552094	apply/riskresult	info	rule.check
+1479692553891	apply/riskresult	info	market.toggle	{"market":"HA"}
+1479692554979	apply/riskresult	info	market.unselected	{}
+1479692557694	apply/riskresult	info	submit	{"sa":true,"ha":true}
+1479692557710	apply/riskresult	info	submit.start
+1479692558274	apply/riskresult	info	submit.succeed
+1479692558398	userinfo	info	refresh	{"nickname":"skyrunner","state":"2","irregular":"0","gem":"0","bankcard":"2627"}
+1479692558409	apply/mod	info	next	{"0":{"acceptstate":"1","recover":"0"}}
+1479692558444	spa	info	redirect	{"to":"apply/progress.shtml?acceptstate=1&recover=0","depth":11,"type":"hash"}
+1479692558582	apply/progress	info	userinfo.get	{"applyTime":"2016-11-21 09:42:37","applyTips":"%u9884%u8BA130%u5206%u949F%u5185%u53CD%u9988%u7ED3%u679C","applyDesc":"%u4F60%u7684%u5F00%u6237%u8D44%u6599%u6B63%u5728%u5BA1%u6838%u4E2D"}
+===version:20161121094435:end===
+
